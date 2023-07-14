@@ -25,3 +25,8 @@ disp = ConfusionMatrixDisplay.from_estimator(
     clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
 )
 plt.savefig("plot.png")
+
+import geodatasets
+chicago = geopandas.read_file(geodatasets.get_path("geoda.chicago_commpop"))
+chicago.plot()
+plt.savefig("geoplot.png")
