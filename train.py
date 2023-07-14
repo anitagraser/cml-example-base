@@ -17,6 +17,7 @@ clf.fit(X_train, y_train)
 acc = clf.score(X_test, y_test)
 print(acc)
 with open("metrics.txt", "w") as outfile:
+    outfile.write("Hello world :-)\n")
     outfile.write("Accuracy: " + str(acc) + "\n")
 
 # Plot it
