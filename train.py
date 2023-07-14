@@ -29,5 +29,5 @@ plt.savefig("plot.png")
 import geopandas
 import geodatasets
 chicago = geopandas.read_file(geodatasets.get_path("geoda.chicago_commpop"))
-chicago.plot()
+chicago.plot(column="POP2010")
 plt.savefig("geoplot.png")
