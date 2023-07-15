@@ -6,6 +6,7 @@ import geoviews as gv
 import geodatasets 
 from shapely.geometry import Point
 from datetime import datetime, timedelta 
+from pathlib import Path
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
@@ -40,4 +41,13 @@ plt.savefig("mpd-plot.png")
 geoviews_plot = toy_traj.hvplot(
     title='Speed (m/s) along track', c='speed', cmap='RdYlBu',
     line_width=7, width=700, height=500, tiles='CartoLight', colorbar=True)
-gv.save(geoviews_plot, "mpd-hvplot.png")
+
+options = Options()
+options.headless = True
+web_driver = Firefox(
+    options=options,
+    firefox_binary=str(Path('/opt/conda/envs/mpd/bin/firefox')),
+    executable_path=str(Path("/opt/conda/envs/mpd/bin/geckodriver")))
+
+gv.save(geoviews_plot, "mpd-hvplot.png", webdriver=web_driver)
+
