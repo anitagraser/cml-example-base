@@ -15,6 +15,12 @@ jobs:
           miniforge-variant: Mambaforge
           use-mamba: true
       
+      - name: Check and Log Environment
+        run: |
+          python -V
+          python -c "import movingpandas; movingpandas.show_versions();"
+          conda info
+
       - name: Spatial processing
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
