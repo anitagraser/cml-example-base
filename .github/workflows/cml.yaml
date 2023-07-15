@@ -18,6 +18,5 @@ jobs:
           echo "![](./gpd-plot.png)" >> report.md
           echo "## MovingPandas plot" >> report.md
           echo "![](./mpd-plot.png)" >> report.md
-          echo "![](./mpd-hvplot.png)" >> report.md
 
           cml comment create report.md

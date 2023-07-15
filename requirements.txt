@@ -4,5 +4,3 @@ matplotlib
 geopandas
 geodatasets
 movingpandas
-hvplot==0.8.3
-geoviews
