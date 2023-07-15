@@ -29,7 +29,7 @@ t = datetime(2018,1,1,12,7,0)
 point = toy_traj.get_position_at(t, method="interpolated")
 point = gpd.GeoSeries([point])
 
-ax = toy_traj.plot(column="speed", cmap="YlGnBu")
-point.plot(ax=ax, color='red', markersize=100)
+ax = toy_traj.plot(column="speed", cmap="PRGn")
+point.plot(ax=ax, color='hotpink', markersize=100)
 plt.savefig("mpd-plot.png")
 
