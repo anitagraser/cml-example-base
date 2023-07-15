@@ -43,7 +43,6 @@ geoviews_plot = toy_traj.hvplot(
     line_width=7, width=700, height=500, tiles='CartoLight', colorbar=True)
 
 options = Options()
-options.headless = True
 options.add_argument("--headless")
 driver = Firefox(
     options=options,
