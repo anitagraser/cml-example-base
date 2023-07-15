@@ -24,6 +24,12 @@ df = pd.DataFrame([
 ]).set_index('t')
 gdf = gpd.GeoDataFrame(df, crs=31256)
 toy_traj = mpd.Trajectory(gdf, 1)
-toy_traj.plot(column="speed")
+
+t = datetime(2018,1,1,12,7,0)
+point = toy_traj.get_position_at(t, method="interpolated")
+point = gpd.GeoSeries([point])
+
+ax = toy_traj.plot(column="speed", cmap="YlGnBu")
+point.plot(ax=ax, color='red', markersize=100)
 plt.savefig("mpd-plot.png")
 
