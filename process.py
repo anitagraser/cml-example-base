@@ -42,9 +42,9 @@ geoviews_plot = toy_traj.hvplot(
     title='Speed (m/s) along track', c='speed', cmap='RdYlBu',
     line_width=7, width=700, height=500, tiles='CartoLight', colorbar=True)
 
-options = Options()
-options.add_argument("--headless")
-driver = Firefox(options=options)
+#options = Options()
+#options.add_argument("--headless")
+#driver = Firefox(options=options)
 
-gv.save(geoviews_plot, "mpd-hvplot.png", webdriver=driver)
+gv.save(geoviews_plot, "mpd-hvplot.png")#, webdriver=driver)
 
