@@ -13,7 +13,10 @@ jobs:
           pip install -r requirements.txt
           python train.py
 
-          cat metrics.txt >> report.md
-          echo "![](./plot.png)" >> report.md
-          echo "![](./geoplot.png)" >> report.md
+          cat out.txt >> report.md
+          echo "## GeoPandas plot"
+          echo "![](./gpd-plot.png)" >> report.md
+          echo "## MovingPandas plot"
+          echo "![](./mpd-plot.png)" >> report.md
+
           cml comment create report.md

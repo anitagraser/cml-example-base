@@ -1,33 +1,29 @@
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import ConfusionMatrixDisplay
+import pandas as pd
+import geopandas as gpd
+import movingpandas as mpd
+import geodatasets 
 import matplotlib.pyplot as plt
-import numpy as np
+from shapely.geometry import Point
+from datetime import datetime 
 
-# Read in data
-X_train = np.genfromtxt("data/train_features.csv")
-y_train = np.genfromtxt("data/train_labels.csv")
-X_test = np.genfromtxt("data/test_features.csv")
-y_test = np.genfromtxt("data/test_labels.csv")
 
-# Fit a model
-depth = 5
-clf = RandomForestClassifier(max_depth=depth)
-clf.fit(X_train, y_train)
-
-acc = clf.score(X_test, y_test)
-print(acc)
-with open("metrics.txt", "w") as outfile:
+with open("out.txt", "w") as outfile:
     outfile.write("Hello world! :-) \n")
-    outfile.write("Accuracy: " + str(acc) + "\n")
 
-# Plot it
-disp = ConfusionMatrixDisplay.from_estimator(
-    clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
-)
-plt.savefig("plot.png")
 
-import geopandas
-import geodatasets
-chicago = geopandas.read_file(geodatasets.get_path("geoda.chicago_commpop"))
+chicago = gpd.read_file(geodatasets.get_path("geoda.chicago_commpop"))
 chicago.plot(column="POP2010")
-plt.savefig("geoplot.png")
+plt.savefig("gpd-plot.png")
+
+
+df = pd.DataFrame([
+  {'geometry':Point(0,0), 't':datetime(2018,1,1,12,0,0)},
+  {'geometry':Point(6,0), 't':datetime(2018,1,1,12,6,0)},
+  {'geometry':Point(6,6), 't':datetime(2018,1,1,12,10,0)},
+  {'geometry':Point(9,9), 't':datetime(2018,1,1,12,15,0)}
+]).set_index('t')
+gdf = gpd.GeoDataFrame(df, crs=31256)
+toy_traj = mpd.Trajectory(gdf, 1)
+toy_traj.plot()
+plt.savefig("mpd-plot.png")
+
