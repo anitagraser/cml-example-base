@@ -5,7 +5,7 @@ dependencies:
   - python=3.10
   - movingpandas
   - cartopy
-  - hvplot
+  - hvplot==0.8.3
   - geoviews
   - geopy
   - geodatasets
