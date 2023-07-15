@@ -25,6 +25,7 @@ jobs:
           python -V
           python -c "import movingpandas; movingpandas.show_versions();"
           conda info
+          firefox -headless
 
       - name: Spatial processing
         env:
