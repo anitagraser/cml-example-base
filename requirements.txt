@@ -6,4 +6,3 @@ geodatasets
 movingpandas
 hvplot==0.8.3
 geoviews
-geopy
