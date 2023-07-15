@@ -1,0 +1,43 @@
+name: spatial-analytics
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    container: ghcr.io/iterative/cml:0-dvc2-base1
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: mpd
+          environment-file: environment.yml
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+          use-mamba: true
+          auto-activate-base: false
+      
+      - name: Check and Log Environment
+        run: |
+          python -V
+          python -c "import movingpandas; movingpandas.show_versions();"
+          conda info
+          apt-get update && apt-get install -y wget bzip2 libxtst6 libgtk-3-0 libx11-xcb-dev libdbus-glib-1-2 libxt6 libpci-dev libasound2 
+          
+      - name: Spatial processing
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python process.py
+
+          cat out.txt >> report.md
+          echo "## GeoPandas plot" >> report.md
+          echo "![](./gpd-plot.png)" >> report.md
+          echo "## MovingPandas plot" >> report.md
+          echo "![](./mpd-plot.png)" >> report.md
+          echo "![](./mpd-hvplot.png)" >> report.md
+
+          cml comment create report.md
