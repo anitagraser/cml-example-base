@@ -6,8 +6,8 @@ import geoviews as gv
 import geodatasets 
 from shapely.geometry import Point
 from datetime import datetime, timedelta 
-from os.path import exists
-from urllib.request import urlretrieve
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
 
 
 with open("out.txt", "w") as outfile:
