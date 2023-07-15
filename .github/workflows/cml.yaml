@@ -1,0 +1,22 @@
+name: spatial-analytics
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    container: ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Spatial processing
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          python process.py
+
+          cat out.txt >> report.md
+          echo "## GeoPandas plot" >> report.md
+          echo "![](./gpd-plot.png)" >> report.md
+          echo "## MovingPandas plot" >> report.md
+          echo "![](./mpd-plot.png)" >> report.md
+
+          cml comment create report.md
