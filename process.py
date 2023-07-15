@@ -44,10 +44,10 @@ geoviews_plot = toy_traj.hvplot(
 
 options = Options()
 options.headless = True
-web_driver = Firefox(
+options.add_argument("--headless")
+driver = Firefox(
     options=options,
-    firefox_binary=str(Path('/opt/conda/envs/mpd/bin/firefox')),
-    executable_path=str(Path("/opt/conda/envs/mpd/bin/geckodriver")))
+    executable_path=str(Path("/__w/cml-example-base/cml-example-base/3/envs/mpd/bin/geckodriver")))
 
-gv.save(geoviews_plot, "mpd-hvplot.png", webdriver=web_driver)
+gv.save(geoviews_plot, "mpd-hvplot.png", webdriver=driver)
 
