@@ -1,0 +1,10 @@
+name: mpd
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - movingpandas
+  - cartopy
+  - hvplot
+  - geoviews
+  - geopy

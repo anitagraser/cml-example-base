@@ -6,11 +6,19 @@ jobs:
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Setup Conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: environment.yml
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+          use-mamba: true
+      
       - name: Spatial processing
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install -r requirements.txt
           python process.py
 
           cat out.txt >> report.md
