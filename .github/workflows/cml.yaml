@@ -25,6 +25,7 @@ jobs:
           python -V
           python -c "import movingpandas; movingpandas.show_versions();"
           conda info
+          apt-get update && apt-get install -y libgtk-3-0
           firefox -headless
 
       - name: Spatial processing
