@@ -25,5 +25,5 @@ df = pd.DataFrame([
 gdf = gpd.GeoDataFrame(df, crs=31256)
 toy_traj = mpd.Trajectory(gdf, 1)
 toy_traj.plot()
-plt.savefig("mpd-plot.png")
+plt.savefig("mpd-plot.png", column="speed")
 
