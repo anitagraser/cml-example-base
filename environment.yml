@@ -9,3 +9,4 @@ dependencies:
   - geoviews
   - geopy
   - geodatasets
+  - selenium
