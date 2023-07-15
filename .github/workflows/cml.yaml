@@ -4,16 +4,21 @@ jobs:
   run:
     runs-on: ubuntu-latest
     container: ghcr.io/iterative/cml:0-dvc2-base1
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
       - uses: actions/checkout@v3
       
       - name: Setup Conda
         uses: conda-incubator/setup-miniconda@v2
         with:
+          activate-environment: mpd
           environment-file: environment.yml
           miniforge-version: latest
           miniforge-variant: Mambaforge
           use-mamba: true
+          auto-activate-base: false
       
       - name: Check and Log Environment
         run: |
